@@ -442,8 +442,7 @@ ROTATION_LOCKED_REVERSED_LANDSCAPE</div></td>
 <pre dir="ltr">Tapsell:onNativeVideoAdClicked(adId);</pre>
 <h3>نمونه پیاده‌سازی</h3>
 یک نمونه پیاده‌سازی SDK تپسل در Cocos2dx Lua در repository زیر آمده است.
-<p style="text-align: center;"><a href="https://github.com/hermamitr/TapsellSDK_v3_Cocos2Dx_Lua"><button>مشاهده پروژه نمونه</button></a></p>
-لطفا نظرات خود درباره محتوای این فایل و مشکلاتی که در پیاده‌سازی SDK تپسل با آنها مواجه شدید را به ما اطلاع دهید.
+<p style="text-align: center;"><a href="https://github.com/tapselladnet/TapsellSDK_v3_Cocos2Dx_Lua"><button>مشاهده پروژه نمونه</button></a></p>
 </div>
 
 </div>
