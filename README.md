@@ -9,7 +9,7 @@
 فهرست مطالب
 <ul>
  	<li><a href="#android-init">راه اندازی پروژه Cocos2dx با زبان Lua (اندروید)</a></li>
- 	<li><a href="">راه اندازی پروژه Cocos2dx با زبان Lua پلتفرم iOS</a></li>
+ 	<li><a href="#ios-init">راه اندازی پروژه Cocos2dx با زبان Lua پلتفرم iOS</a></li>
  	<li><a href="">پیاده‌سازی تبلیغات ویدئویی (Interstitial/Rewarded Video) و بنری تمام صفحه (Interstitial Banner) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="">پیاده‌سازی تبلیغات بنری هم‌نما (Native Banner) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="">پیاده‌سازی تبلیغات ویدیویی هم‌نما (Native Video) در پروژه Cocos2dx زبان Lua</a></li>
@@ -47,6 +47,24 @@
     <span style="color: #800080;">}</span>
 <span style="color: #800080;">}</span></pre>
 <h3>گام ۶:‌ اضافه کردن فایل های  Tapsell.lua و JSON.lua به پروژه cocos2dx</h3>
+فایل های  Tapsell.lua و JSON.lua<strong> </strong>موجود در پلاگین تپسل را در فولدر src/app از پروژه کپی کنید.
+
+&nbsp;
+</div>
+
+<div id="ios-init">
+ <h2>راه اندازی پروژه Cocos2dx با زبان Lua پلتفرم iOS</h2>
+ <h3><strong>گام ۱: تنظیمات پروژه Xcode</strong></h3>
+قبل از هر کاری ابتدا پروژه iOS واقع در <span class="s1"><code>frameworks/runtime-src/proj.ios_mac</code> از محل پروژه خود را با xcode باز کرده و تنظیمات لینک زیر را در آن اعمال کنید : (دقت کنید که برای اضافه کردن فریمورک تپسل به پروژه Xcode باید Deployment Target بالاتر از iOS 8.0 باشد.)</span>
+<p style="text-align: center;"><a href="https://answers.tapsell.ir?ht_kb=ios-sdk"><button>تنظیم پروژه Xcode</button></a></p>
+
+<h3><strong>گام ۲: اضافه کردن کلاس TSTapsell به پروژه Xcode</strong></h3>
+فایل های پلاگین تپسل  ( tapsell-cocos2dx-ios-lua ) را از لینک زیر دانلود کنید :
+<p style="text-align: center;"><a href="https://storage.backtory.com/tapsell-server/sdk/tapsell-cocos2dx-ios-lua.zip"><button>پلاگین تپسل</button></a></p>
+<p style="text-align: right;">فایل های TSTapsell.h و TSTapsell.mm را به پروژه ios در پوشه ios اضافه کنید. مانند تصویر زیر :</p>
+<p style="text-align: right;"><img class="aligncenter wp-image-2377" src="https://answers.tapsell.ir/wp-content/uploads/2017/12/Screen-Shot-2017-12-20-at-4.41.20-PM.png" alt="" width="208" height="458" /></p>
+
+<h3 id="گام-۶‌-اضافه-کردن-فایل-های-tapsell-lua-و-json-lua-به-پر">گام ۳:‌ اضافه کردن فایل های  Tapsell.lua و JSON.lua به پروژه cocos2dx</h3>
 فایل های  Tapsell.lua و JSON.lua<strong> </strong>موجود در پلاگین تپسل را در فولدر src/app از پروژه کپی کنید.
 
 &nbsp;
