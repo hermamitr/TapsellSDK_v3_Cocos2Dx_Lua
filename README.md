@@ -10,7 +10,7 @@
 <ul>
  	<li><a href="#android-init">راه اندازی پروژه Cocos2dx با زبان Lua (اندروید)</a></li>
  	<li><a href="#ios-init">راه اندازی پروژه Cocos2dx با زبان Lua پلتفرم iOS</a></li>
- 	<li><a href="rewarded">پیاده‌سازی تبلیغات ویدئویی (Interstitial/Rewarded Video) و بنری تمام صفحه (Interstitial Banner) در پروژه Cocos2dx زبان Lua</a></li>
+ 	<li><a href="#rewarded">پیاده‌سازی تبلیغات ویدئویی (Interstitial/Rewarded Video) و بنری تمام صفحه (Interstitial Banner) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="">پیاده‌سازی تبلیغات بنری هم‌نما (Native Banner) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="">پیاده‌سازی تبلیغات ویدیویی هم‌نما (Native Video) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="">پیاده‌سازی تبلیغات بنری استاندارد (Standard Banner) در پروژه Cocos2dx Lua</a></li>
