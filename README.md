@@ -461,7 +461,7 @@ ROTATION_LOCKED_REVERSED_LANDSCAPE</div></td>
 <pre style="color: #000000; background: #ffffff;" dir="ltr">local Tapsell <span style="color: #808030;">=</span> require<span style="color: #808030;">(</span><span style="color: #800000;">"</span><span style="color: #0000e6;">app.Tapsell</span><span style="color: #800000;">"</span><span style="color: #808030;">)</span>
 </pre>
 برای مقداردهی اولیه ، تابع زیر را با ورودی کلید اپ خود صدا بزنید.
-<pre style=" dir="ltr">Tapsell:initialize(<span style="color: #409b1c;">"Your tapsell appKey"</span>)</pre>
+<pre dir="ltr">Tapsell:initialize(<span style="color: #409b1c;">"Your tapsell appKey"</span>)</pre>
 ورودی appKey کلید تپسلی است که در گام قبل از پنل تپسل دریافت کردید.
 <h3>گام ۴: دریافت تبلیغ</h3>
 جهت نمایش بنر استاندارد، باید محلی برای نمایش آن در صفحه در نظر بگیرید. بنر استاندارد، دارای سایزهای استانداردی است که در SDK تپسل مشخص شده اند. جهت نمایش بنر، از تابع زیر استفاده کنید:
