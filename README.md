@@ -13,7 +13,7 @@
  	<li><a href="#rewarded">پیاده‌سازی تبلیغات ویدئویی (Interstitial/Rewarded Video) و بنری تمام صفحه (Interstitial Banner) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="#native-banner">پیاده‌سازی تبلیغات بنری هم‌نما (Native Banner) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="#native-video">پیاده‌سازی تبلیغات ویدیویی هم‌نما (Native Video) در پروژه Cocos2dx زبان Lua</a></li>
- 	<li><a href="">پیاده‌سازی تبلیغات بنری استاندارد (Standard Banner) در پروژه Cocos2dx Lua</a></li>
+ 	<li><a href="#standard-banner">پیاده‌سازی تبلیغات بنری استاندارد (Standard Banner) در پروژه Cocos2dx Lua</a></li>
 </ul>
 
 <div id="android-init">
@@ -443,6 +443,64 @@ ROTATION_LOCKED_REVERSED_LANDSCAPE</div></td>
 <h3>نمونه پیاده‌سازی</h3>
 یک نمونه پیاده‌سازی SDK تپسل در Cocos2dx Lua در repository زیر آمده است.
 <p style="text-align: center;"><a href="https://github.com/tapselladnet/TapsellSDK_v3_Cocos2Dx_Lua"><button>مشاهده پروژه نمونه</button></a></p>
+</div>
+
+<div id="standard-banner">
+<h2>پیاده‌سازی تبلیغات بنری استاندارد در پروژه Cocos2dx Lua</h2>
+<h3>گام ۱ : راه اندازی پروژه Cocos2dx با زبان Lua</h3>
+ابتدا به لینک زیر مراجعه کنید و پلاگین تپسل را به پروژه ی خود اضافه کنید :
+<p style="text-align: center;"><a href="#android-init"><button>راه اندازی پروژه اندروید</button></a></p>
+<p style="text-align: center;"><a href="#ios-init"><button>راه اندازی پروژه iOS</button></a></p>
+
+<h3>گام ۲: دریافت کلید تپسل</h3>
+وارد پنل مدیریت تپسل شده و با تعریف یک اپلیکیشن جدید با عنوان پکیج اپلیکیشن اندرویدی خود، یک کلید تپسل دریافت کنید.
+<p style="text-align: center;"><a href="https://dashboard.tapsell.ir"><button>ورود به داشبورد تپسل</button></a></p>
+
+<h3>گام ۳: شروع کار با SDK تپسل</h3>
+در ابتدای کد خود این خط را اضافه کنید :‌
+<pre style="color: #000000; background: #ffffff;" dir="ltr">local Tapsell <span style="color: #808030;">=</span> require<span style="color: #808030;">(</span><span style="color: #800000;">"</span><span style="color: #0000e6;">app.Tapsell</span><span style="color: #800000;">"</span><span style="color: #808030;">)</span>
+</pre>
+برای مقداردهی اولیه ، تابع زیر را با ورودی کلید اپ خود صدا بزنید.
+<pre style=" dir="ltr">Tapsell:initialize(<span style="color: #409b1c;">"Your tapsell appKey"</span>)</pre>
+ورودی appKey کلید تپسلی است که در گام قبل از پنل تپسل دریافت کردید.
+<h3>گام ۴: دریافت تبلیغ</h3>
+جهت نمایش بنر استاندارد، باید محلی برای نمایش آن در صفحه در نظر بگیرید. بنر استاندارد، دارای سایزهای استانداردی است که در SDK تپسل مشخص شده اند. جهت نمایش بنر، از تابع زیر استفاده کنید:
+<pre dir="ltr">Tapsell:requestStandardBannerAd(zoneId, bannerType, horizontalGravity, verticalGravity);</pre>
+مقدار zoneId کلیدی ست که بعد از ساخت اپلیکیشن در پنل و ثبت یک zone از نوع بنری استاندارد دریافت میکنید.
+
+ورودی BannerType اندازه های مختلف را بیان میکند و شامل مقادیر زیر می‌باشد :
+<table style="text-align: center; border-collapse: collapse;" width="100%" cellpadding="6"><caption>جدول ۱ مقادیر مختلف پارامتر bannerType</caption>
+<tbody>
+<tr style="border-bottom: 1px solid #ddd;">
+<th width="40%">مقدار</th>
+<th width="60%">ابعاد و نام استاندارد</th>
+</tr>
+<tr style="background-color: #fefefe;">
+<td width="40%">‌BANNER_320x50</td>
+<td width="60%">عرض ۳۲۰ - ارتفاع ۵۰ (mobile banner)</td>
+</tr>
+<tr style="background-color: #f2f2f2;">
+<td width="40%">BANNER_320x100</td>
+<td width="60%">عرض ۳۲۰ - ارتفاع  ۱۰۰ (large mobile banner)</td>
+</tr>
+<tr style="background-color: #fefefe;">
+<td width="40%">BANNER_250x250</td>
+<td width="60%">عرض ۲۵۰ - ارتفاع ۲۵۰ (square)</td>
+</tr>
+<tr style="background-color: #f2f2f2;">
+<td width="40%">BANNER_300x250</td>
+<td width="60%">عرض ۳۰۰ - ارتفاع ۲۵۰ (medium rectangle)</td>
+</tr>
+</tbody>
+</table>
+ورودی horizontalGravity نشان میدهد که آیا تبلیغ، بالا یا پایین صفحه باشد و شامل TOP, BOTTOM می باشد،
+
+همچنین verticalGravity بیان میکند که تبلیغ از جهت عرضی در کجای صفحه باشد و میتواند شامل مقادیر LEFT, RIGHT ,CENTER باشد. یک نمونه پیاده سازی کد به شکل زیر است:
+<pre dir="ltr"><span class="pl-smi">Tapsell:</span><span class="pl-en">requestStandardBannerAd</span>(<span class="pl-c1">STANDARD_BANNER_ZONEID</span>, <span class="pl-smi">Tapsell</span>.<span class="pl-smi">BANNER_320x50</span>, <span class="pl-smi">Tapsell</span>.<span class="pl-c1">BOTTOM</span>, <span class="pl-smi">Tapsell</span>.<span class="pl-c1">CENTER</span>);</pre>
+<h3>نمونه پیاده‌سازی</h3>
+یک نمونه پیاده‌سازی SDK تپسل در Cocos2dx Lua در repository زیر آمده است.
+<p style="text-align: center;"><a href="https://github.com/tapselladnet/TapsellSDK_v3_Cocos2Dx_Lua"><button>مشاهده پروژه نمونه</button></a></p>
+
 </div>
 
 </div>
