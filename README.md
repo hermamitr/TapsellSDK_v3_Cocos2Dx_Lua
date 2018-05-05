@@ -12,7 +12,7 @@
  	<li><a href="#ios-init">راه اندازی پروژه Cocos2dx با زبان Lua پلتفرم iOS</a></li>
  	<li><a href="#rewarded">پیاده‌سازی تبلیغات ویدئویی (Interstitial/Rewarded Video) و بنری تمام صفحه (Interstitial Banner) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="#native-banner">پیاده‌سازی تبلیغات بنری هم‌نما (Native Banner) در پروژه Cocos2dx زبان Lua</a></li>
- 	<li><a href="">پیاده‌سازی تبلیغات ویدیویی هم‌نما (Native Video) در پروژه Cocos2dx زبان Lua</a></li>
+ 	<li><a href="#native-video">پیاده‌سازی تبلیغات ویدیویی هم‌نما (Native Video) در پروژه Cocos2dx زبان Lua</a></li>
  	<li><a href="">پیاده‌سازی تبلیغات بنری استاندارد (Standard Banner) در پروژه Cocos2dx Lua</a></li>
 </ul>
 
@@ -341,6 +341,109 @@ ROTATION_LOCKED_REVERSED_LANDSCAPE</div></td>
 <p style="text-align: center;"><a href="https://github.com/tapselladnet/TapsellSDK_v3_Cocos2Dx_Lua"><button>مشاهده پروژه نمونه</button></a></p>
 
 &nbsp;
+</div>
+
+<div id="native-video">
+<h2>پیاده‌سازی تبلیغات ویدیویی هم‌نما (Native Video) در پروژه Cocos2dx زبان Lua</h2>
+<h3>گام ۱ : راه اندازی پروژه Cocos2dx با زبان Lua</h3>
+ابتدا به لینک زیر مراجعه کنید و پلاگین تپسل را به پروژه ی خود اضافه کنید :
+<p style="text-align: center;"><a href="#android-init"><button>راه اندازی پروژه اندروید</button></a></p>
+<p style="text-align: center;"><a href="#ios-init"><button>راه اندازی پروژه iOS</button></a></p>
+
+<h3>گام ۲: دریافت کلید تپسل</h3>
+وارد پنل مدیریت تپسل شده و با تعریف یک اپلیکیشن جدید با عنوان پکیج اپلیکیشن اندرویدی خود، یک کلید تپسل دریافت کنید.
+<p style="text-align: center;"><a href="https://dashboard.tapsell.ir"><button>ورود به داشبورد تپسل</button></a></p>
+
+<h3>گام ۳: شروع کار با SDK تپسل</h3>
+در ابتدای کد خود (در اسکوپی که می‌خواهید از تپسل استفاده کنید) این خط را اضافه کنید :‌
+<pre dir="ltr">local Tapsell = require("app.Tapsell")
+</pre>
+برای مقداردهی اولیه ، تابع زیر را با ورودی کلید اپ خود صدا بزنید.
+<pre dir="ltr">Tapsell:initialize(appKey)</pre>
+ورودی appKey کلید تپسلی است که در گام قبل از پنل تپسل دریافت کردید.
+<h3>گام ۴: دریافت تبلیغ</h3>
+در تبلیغات هم‌نما، شما قادر هستید ویژگی‌های ظاهری هر یک از اجزای تبلیغ (اندازه، محل قرارگیری، رنگ فونت و…) را بصورتی که هماهنگ با محتوای اپلیکیشن شما باشد تعیین کنید.
+
+برای این منظور، شما یک درخواست تبلیغ به SDK تپسل ارسال می کنید، محتوای یک تبلیغ هم‌نمای ویدیویی را دریافت کنید و آن را به نحوه مورد نظر خود نمایش دهید.
+
+جهت ارسال درخواست تبلیغ هم‌نما، از تابع زیر استفاده کنید.
+<pre style="color: #000000; background: #ffffff;" dir="ltr"><span style="color: #e34adc;">Tapsell:</span>requestNativeVideoAd<span style="color: #808030;">(</span>
+                zoneId <span style="color: #800080;">:</span> string<span style="color: #808030;">,</span>
+                onAdAvailable <span style="color: #800080;">:</span> function<span style="color: #808030;">,</span>
+                onError<span style="color: #800080;">:</span> function<span style="color: #808030;">,</span>
+                onNoAdAvailable <span style="color: #800080;">:</span> function<span style="color: #808030;">,</span>
+                onNoNetwork<span style="color: #800080;">:</span> function
+            <span style="color: #808030;">)</span>
+</pre>
+ورودی zoneId، شناسه تبلیغ‌گاه از نوع ویدیویی هم‌نما است که باید آن را از <a href="https://dashboard.tapsell.ir/">داشبورد تپسل</a> دریافت کنید.
+
+نتیجه درخواست تبلیغ به تابع‌های ورودی بازگردانده می شود. یک نمونه پیاده سازی تابع‌های لازم در ادامه آمده است. تابع onAdAvailable یک Table به نام adProps به عنوان پارامتر دارد که داده های تبلیغ در آن در صورت وجود تبلیغ قرار می‌گیرد.
+<pre style="color: #000000; background: #ffffff;" dir="ltr"><span style="color: #e34adc;">Tapsell:</span>requestNativeBannerAd<span style="color: #808030;">(</span>
+                NATIVE_BANNER_ZONEID<span style="color: #808030;">,</span>
+                function<span style="color: #808030;">(</span>adProps<span style="color: #808030;">)</span>
+                    <span style="color: #603000;">printf</span><span style="color: #808030;">(</span>
+                        <span style="color: #800000;">"</span><span style="color: #0000e6;">onAdAvailable title: </span><span style="color: #007997;">%s</span><span style="color: #0000e6;">, description: </span><span style="color: #007997;">%s</span><span style="color: #0000e6;">, icon_url: </span><span style="color: #007997;">%s</span><span style="color: #0000e6;">, call_to_action_text: </span><span style="color: #007997;">%s</span><span style="color: #0000e6;">, video_url: </span><span style="color: #007997;">%s</span><span style="color: #800000;">"</span><span style="color: #808030;">,</span>
+                        adProps<span style="color: #808030;">.</span>title<span style="color: #808030;">,</span>
+                        adProps<span style="color: #808030;">.</span>description<span style="color: #808030;">,</span>
+                        adProps<span style="color: #808030;">.</span>icon_url<span style="color: #808030;">,</span>
+                        adProps<span style="color: #808030;">.</span>call_to_action_text<span style="color: #808030;">,</span>
+                        adProps<span style="color: #808030;">.</span>video_url
+                    <span style="color: #808030;">)</span>
+                end<span style="color: #808030;">,</span>
+                function<span style="color: #808030;">(</span>error<span style="color: #808030;">)</span>
+                    <span style="color: #603000;">printf</span><span style="color: #808030;">(</span><span style="color: #800000;">"</span><span style="color: #0000e6;">onError </span><span style="color: #007997;">%s</span><span style="color: #800000;">"</span><span style="color: #808030;">,</span> error<span style="color: #808030;">)</span>
+                end<span style="color: #808030;">,</span>
+                function<span style="color: #808030;">(</span><span style="color: #808030;">)</span>
+                    print<span style="color: #808030;">(</span><span style="color: #800000;">"</span><span style="color: #0000e6;">onNoAdAvailable</span><span style="color: #800000;">"</span><span style="color: #808030;">)</span>
+                end<span style="color: #808030;">,</span>
+                function<span style="color: #808030;">(</span><span style="color: #808030;">)</span>
+                    print<span style="color: #808030;">(</span><span style="color: #800000;">"</span><span style="color: #0000e6;">onNoNetwork</span><span style="color: #800000;">"</span><span style="color: #808030;">)</span>
+                end
+            <span style="color: #808030;">)</span>
+</pre>
+<h3 id="گام-۴-نمایش-تبلیغ">گام ۵: نمایش تبلیغ</h3>
+برای نمایش تبلیغ، می‌بایست از داده های موجود در تابع onAdAvailable (همان adProps) استفاده کنید. توضیح این داده ها در جدول زیر آمده است :
+<table width="100%"><caption>جدول ۱ داده های تابع onAdAvailable (همان adProps)</caption>
+<tbody>
+<tr>
+<th width="40%">مشخصه</th>
+<th width="60%">توضیحات</th>
+</tr>
+<tr>
+<td width="40%">adProps.ad_id</td>
+<td>شناسه تبلیغ</td>
+</tr>
+<tr>
+<td width="40%">adProps.title</td>
+<td>عنوان تبلیغ</td>
+</tr>
+<tr>
+<td width="40%">adProps.description</td>
+<td width="60%">توضیحات تبلیغ</td>
+</tr>
+<tr>
+<td width="40%">adProps.call_to_action_text</td>
+<td width="60%">متن دعوت کننده از کاربر به کلیک/نصب</td>
+</tr>
+<tr>
+<td width="40%">adProps.video_url</td>
+<td width="60%">لینک ویدیو تبلیغ</td>
+</tr>
+<tr>
+<td width="40%">adProps.icon_url</td>
+<td width="60%">لینک آیکون تبلیغ</td>
+</tr>
+</tbody>
+</table>
+زمانی که پخش ویدیو تمام شد، باید تابع <code>onNativeVideoAdShown</code> از <code>Tapsell</code> را فراخوانی کنید ؛ این تابع یک رشته به عنوان ورودی می‌گیرد که شناسه مربوط به تبلیغی است که نمایش داده شده است.
+<pre dir="ltr">Tapsell:onNativeVideoAdShown(adId);</pre>
+<h3 id="گام-۵-باز-کردن-تبلیغ">گام ۶: باز کردن تبلیغ</h3>
+برای باز کردن تبلیغ، هنگامی که کاربر روی آن کلیک می‌کند، از تابع زیر استفاده کنید. این تابع یک رشته به عنوان ورودی می‌گیرد که شناسه تبلیغی است که روی آن کلیک شده است.
+<pre dir="ltr">Tapsell:onNativeVideoAdClicked(adId);</pre>
+<h3>نمونه پیاده‌سازی</h3>
+یک نمونه پیاده‌سازی SDK تپسل در Cocos2dx Lua در repository زیر آمده است.
+<p style="text-align: center;"><a href="https://github.com/hermamitr/TapsellSDK_v3_Cocos2Dx_Lua"><button>مشاهده پروژه نمونه</button></a></p>
+لطفا نظرات خود درباره محتوای این فایل و مشکلاتی که در پیاده‌سازی SDK تپسل با آنها مواجه شدید را به ما اطلاع دهید.
 </div>
 
 </div>
